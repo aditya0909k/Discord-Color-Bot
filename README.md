@@ -2,7 +2,7 @@ This bot takes the prefix, which is ".", then a hex or rgb code, and converts it
 
 Example: 
 
-.color ##7289da\n  
+.color ##7289da   
 OR  
 or rgb(114, 137, 218)
 
