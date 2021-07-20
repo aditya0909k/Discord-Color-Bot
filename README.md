@@ -2,11 +2,9 @@ This bot takes the prefix, which is ".", then a hex or rgb code, and converts it
 
 Example: 
 
-.color ##7289da
-
+.color ##7289da\n
 OR
-
-.color rgb(114, 137, 218)
+or rgb(114, 137, 218)
 
 Either of these commands will return the hex code, rgb code, and a full image of the color itself. The image is pulled from https://dummyimage.com. The hex/rgb is converted through bitwise algorithm(s).
 
