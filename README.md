@@ -1,6 +1,6 @@
 This bot takes the prefix, which is ".", then a hex or rgb code, and converts it into a full image of the color and both the rgb and hex code.
 
-Example: 
+Examples: 
 
 .color ##7289da   
 OR  
