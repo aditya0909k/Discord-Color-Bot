@@ -2,7 +2,7 @@ const Discord = require('discord.js');
 
 module.exports = {
     name: 'sendColor',
-    description: 'sends color image',
+    description: 'sends color image, hex, rgb',
     execute(message, args) {
         let colorHEX;
         let colorRGB;
@@ -28,7 +28,7 @@ module.exports = {
             rgb = true;
         if (!rgb)
         {
-            if (args[0].length < 6 || args[0].length > 6)
+            if (args[0].length !== 6)
                 return message.channel.send("Invalid color!");
             colorHEX = args[0];
             let hash = false;
@@ -50,7 +50,7 @@ module.exports = {
             if (args[0].includes('rgb'))
                 rgbStart = true;
             if (args[0].includes('('))
-            par = true;
+                par = true;
             args[0] = args[0].replace(/,/g, "");
             args[1] = args[1].replace(/,/g, "");
             args[2] = args[2].replace(/,/g, "");
