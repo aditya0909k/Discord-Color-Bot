@@ -7,3 +7,5 @@ OR
 .color rgb(114, 137, 218)
 
 Either of these commands will return the hex code, rgb code, and a full image of the color itself. The image is pulled from https://dummyimage.com. The hex/rgb is converted through bitwise algorithm(s).
+
+This bot was made because I wanted a place to organize colors I like for my future websites. Of course, I could do this in my notes app, but I would have to copy&paste the hex and rgb codes from google, and also save an image to my device and upload it onto notes to see that exact color. All of this is extremely tedious and circumvented through the use of this bot.
