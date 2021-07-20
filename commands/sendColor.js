@@ -2,7 +2,7 @@ const Discord = require('discord.js');
 
 module.exports = {
     name: 'sendColor',
-    description: 'sends color image, hex, rgb',
+    description: 'sends color image',
     execute(message, args) {
         let colorHEX;
         let colorRGB;
@@ -28,6 +28,8 @@ module.exports = {
             rgb = true;
         if (!rgb)
         {
+            if (args[0].length < 6 || args[0].length > 6)
+                return message.channel.send("Invalid color!");
             colorHEX = args[0];
             let hash = false;
             if (args[0].includes("#"))
@@ -38,12 +40,17 @@ module.exports = {
         }
         else 
         {
+            for (let i = 0; i < args.length; i++)
+            {
+                if (parseInt(args[i]) > 255 || parseInt(args[i]) < 0 || args[i] !== parseInt(args[i]))
+                    return message.channel.send("Invalid color!");
+            }
             let rgbStart = false;
             let par = false;
             if (args[0].includes('rgb'))
                 rgbStart = true;
             if (args[0].includes('('))
-                par = true;
+            par = true;
             args[0] = args[0].replace(/,/g, "");
             args[1] = args[1].replace(/,/g, "");
             args[2] = args[2].replace(/,/g, "");
@@ -63,6 +70,7 @@ module.exports = {
             colorRGB = hexToRgb(colorHEX);
         }
         let link = `https://dummyimage.com/256x256/${colorHEX}/${colorHEX}`;
+        if (colorHEX < 0 || colorHEX > 0xffffff) return message.channel.send("Invalid Color!");
         const colorEmbed = new Discord.MessageEmbed()
             .setColor(colorHEX)
             .addFields (
