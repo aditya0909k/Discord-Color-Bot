@@ -13,4 +13,5 @@ This bot was made because I wanted a place to organize colors I like for my futu
 This is how the bot is used (my Discord name is "cas"):
 
 ![hex](https://user-images.githubusercontent.com/85547196/126397068-e779dd4b-298c-4da3-bcdb-410f81c1a366.png)
-![rgb](https://user-images.githubusercontent.com/85547196/126397074-771fb26f-4267-4eaf-b408-538d4b7690bf.png)
+![rgb](https://user-images.githubusercontent.com/85547196/126397560-4dff11a6-1048-4e53-bf2e-0eb4ba2d4092.png)
+
