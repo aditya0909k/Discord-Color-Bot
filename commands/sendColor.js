@@ -2,7 +2,7 @@ const Discord = require('discord.js');
 
 module.exports = {
     name: 'sendColor',
-    description: 'sends color image',
+    description: 'sends color image, hex, rgb',
     execute(message, args) {
         let colorHEX;
         let colorRGB;
@@ -14,14 +14,15 @@ module.exports = {
             var b = bigint & 255;
             return `rgb(${r}, ${g}, ${b})`;
         }
-        function componentToHex(c) {
+        function componentToHex(c) 
+        {
             let hex = c.toString(16);
             return hex.length == 1 ? "0" + hex : hex;
-          }
-          
-          function rgbToHex(r, g, b) {
+        }
+        function rgbToHex(r, g, b) 
+        {
             return "#" + componentToHex(r) + componentToHex(g) + componentToHex(b);
-          }
+        }
         let rgb = false;
         if (args[0].includes(','))
             rgb = true;
@@ -42,7 +43,7 @@ module.exports = {
             if (args[0].includes('rgb'))
                 rgbStart = true;
             if (args[0].includes('('))
-            par = true;
+                par = true;
             args[0] = args[0].replace(/,/g, "");
             args[1] = args[1].replace(/,/g, "");
             args[2] = args[2].replace(/,/g, "");
@@ -53,17 +54,13 @@ module.exports = {
                 colorRGB = args;
             }
             if (rgbStart)
-            {
                 args[0] = args[0].substring(3);
-            }
             let r = parseInt(args[0]);
             let g = parseInt(args[1]);
             let b = parseInt(args[2]);
             colorHEX = rgbToHex(r, g, b);
             colorHEX = colorHEX.substring(1);
             colorRGB = hexToRgb(colorHEX);
-            
-
         }
         let link = `https://dummyimage.com/256x256/${colorHEX}/${colorHEX}`;
         const colorEmbed = new Discord.MessageEmbed()
