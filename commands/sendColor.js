@@ -23,45 +23,39 @@ module.exports = {
         {
             return "#" + componentToHex(r) + componentToHex(g) + componentToHex(b);
         }
-        let rgb = false;
-        if (args[0].includes(','))
-            rgb = true;
-        if (!rgb)
+        if (!args[0].includes(',') && args.length === 1)
         {
-            if (args[0].length !== 6)
-                return message.channel.send("Invalid color!");
             colorHEX = args[0];
-            let hash = false;
-            if (args[0].includes("#"))
-                hash = true;
-            if (hash)
+            if (colorHEX.includes("#"))
                 colorHEX = colorHEX.substring(1);
+            if (colorHEX.length < 6 || colorHEX.length > 6)
+                return message.channel.send("Invalid color!");
+            colorHEX = colorHEX.toLowerCase();
             colorRGB = hexToRgb(colorHEX);
         }
         else 
         {
+            if (args[0].substring(0, 3) === "rgb")
+                args[0] = args[0].replace(/rgb/g, "");
+            if (args[0].includes('('))
+            {
+                try {
+                    args[0] = args[0].substring(1);
+                    args[2] = args[2].substring(0, args[2].length-1);
+                } catch(err) {}
+            }
+            try {
+                args[0] = args[0].replace(/,/g, "");
+                args[1] = args[1].replace(/,/g, "");
+                args[2] = args[2].replace(/,/g, "");
+            } catch(err) {}
+            if (args.length !== 3)
+                return message.channel.send("Invalid color!");
             for (let i = 0; i < args.length; i++)
             {
-                if (parseInt(args[i]) > 255 || parseInt(args[i]) < 0 || args[i] !== parseInt(args[i]))
+                if (parseInt(args[i]) > 255 || parseInt(args[i]) < 0)
                     return message.channel.send("Invalid color!");
             }
-            let rgbStart = false;
-            let par = false;
-            if (args[0].includes('rgb'))
-                rgbStart = true;
-            if (args[0].includes('('))
-                par = true;
-            args[0] = args[0].replace(/,/g, "");
-            args[1] = args[1].replace(/,/g, "");
-            args[2] = args[2].replace(/,/g, "");
-            if (par)
-            {
-                args[0] = args[0].substring(1);
-                args[2] = args[2].substring(0, args[2].length-1);
-                colorRGB = args;
-            }
-            if (rgbStart)
-                args[0] = args[0].substring(3);
             let r = parseInt(args[0]);
             let g = parseInt(args[1]);
             let b = parseInt(args[2]);
@@ -72,10 +66,10 @@ module.exports = {
         let link = `https://dummyimage.com/256x256/${colorHEX}/${colorHEX}`;
         if (colorHEX < 0 || colorHEX > 0xffffff) return message.channel.send("Invalid Color!");
         const colorEmbed = new Discord.MessageEmbed()
-            .setColor(colorHEX)
+            .setColor(0x2e3036)
             .addFields (
-                    {name: 'HEX CODE', value: `#${colorHEX}`},
-                    {name: 'RGB CODE', value: colorRGB},
+                    {name: 'HEX CODE', value: `#${colorHEX}`, inline: true},
+                    {name: 'RGB CODE', value: `${colorRGB}`, inline: true},
             )
             .setImage(link)
         message.channel.send(colorEmbed);
